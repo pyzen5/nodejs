@@ -1,0 +1,1 @@
+Initializing node application: $ npm init
