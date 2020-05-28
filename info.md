@@ -30,3 +30,10 @@ Serving static files
 express.Router
 - create modular, mountable route handlers.
 
+# Middleware
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle.
+- Execute any code.
+- Make changes to the request and the response objects.
+- End the request-response cycle.
+- Call the next middleware in the stack.
+

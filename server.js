@@ -1,34 +1,39 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path= require('path');
+const path = require("path");
 const port = 3000;
-const users = require('./routes/users');
-
+const users = require("./routes/users");
 
 // app.use(express.static('public'))    - relative path
-app.use(express.static(path.join(__dirname, 'public')))   // absolute path
+app.use(express.static(path.join(__dirname, "public"))); // absolute path
 
-app.all('/user', (req, res, next) => {
-    console.log('<-- middleware -->');
-    next();
-})
+app.use((req, res, next) => {
+  console.log("<-- app middleware -->");
+  next();
+});
 
-app.delete('/user', (req, res) => {
-    res.send('Delete request!!')
-})
+// error middleware
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
-app.put('/user', (req, res) => {
-    res.send('PUT request!!')
-})
+app.delete("/user", (req, res) => {
+  res.send("Delete request!!");
+});
 
-app.post('/user', (req, res) => {
-    res.send('POST request!!')
-})
+app.put("/user", (req, res) => {
+  res.send("PUT request!!");
+});
 
-app.use('/users', users);
+app.post("/user", (req, res) => {
+  res.send("POST request!!");
+});
 
-app.get('/', (req, res) => {
-    res.send('Hello World!!')
-})
+app.use("/users", users);
 
-app.listen(port, () => console.log('Express server started!!'));
+app.get("/", (req, res) => {
+  res.send("Hello World!!");
+});
+
+app.listen(port, () => console.log("Express server started!!"));
