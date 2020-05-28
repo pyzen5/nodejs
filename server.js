@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const users = require('./routes/users');
 
 app.all('/user', (req, res, next) => {
     console.log('<-- middleware -->');
@@ -18,6 +19,8 @@ app.put('/user', (req, res) => {
 app.post('/user', (req, res) => {
     res.send('POST request!!')
 })
+
+app.use('/users', users);
 
 app.get('/', (req, res) => {
     res.send('Hello World!!')
