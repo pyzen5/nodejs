@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
+const path= require('path');
 const port = 3000;
 const users = require('./routes/users');
+
+
+// app.use(express.static('public'))    - relative path
+app.use(express.static(path.join(__dirname, 'public')))   // absolute path
 
 app.all('/user', (req, res, next) => {
     console.log('<-- middleware -->');

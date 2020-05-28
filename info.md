@@ -21,5 +21,12 @@ Router
     - next() / next('route') 
     - array of handlers
 
+Serving static files
+- function signature: express.static(root, [options])
+- serve the static folder: app.use(express.static('public'))
+- virtual path:   app.use('/static', express.static('public'))
+
+
 express.Router
 - create modular, mountable route handlers.
+
